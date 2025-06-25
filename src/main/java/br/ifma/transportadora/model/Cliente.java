@@ -16,8 +16,12 @@ public class Cliente {
     private Long id;
 
     @NotBlank(message = "Nome é obrigatório")
-    @Size(min = 2, max = 100)
+    @Size(max = 50, message = "O nome deve ter no máximo 50 caracteres")
     private String nome;
+
+    @NotBlank(message = "Endereço é obrigatório")
+    @Size(max = 50, message = "O endereço deve ter no máximo 50 caracteres")
+    private String endereco;
 
     @NotBlank(message = "Telefone é obrigatório")
     @Column(unique = true)

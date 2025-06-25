@@ -18,14 +18,22 @@ class ClienteRepositoryTest {
 
     @Test
     void deveSalvarClienteComSucesso() {
-        Cliente cliente = new Cliente(null, "Maria", "989898898");
+        Cliente cliente = new Cliente(null, "Maria", "Rua das Flores", "989898898");
         Cliente salvo = clienteRepository.save(cliente);
         assertNotNull(salvo.getId());
     }
 
     @Test
     void naoDeveSalvarClienteSemNome() {
-        Cliente cliente = new Cliente(null, "", "989898898");
+        Cliente cliente = new Cliente(null, "", "Rua do Campo", "989898898");
+        assertThrows(ConstraintViolationException.class, () -> {
+            clienteRepository.saveAndFlush(cliente);
+        });
+    }
+
+    @Test
+    void naoDeveSalvarClienteSemEndereco() {
+        Cliente cliente = new Cliente(null, "Carlos", "", "989898898");
         assertThrows(ConstraintViolationException.class, () -> {
             clienteRepository.saveAndFlush(cliente);
         });
@@ -33,7 +41,7 @@ class ClienteRepositoryTest {
 
     @Test
     void deveBuscarClientePorTelefone() {
-        Cliente cliente = new Cliente(null, "João", "999999999");
+        Cliente cliente = new Cliente(null, "João", "Av. Central", "999999999");
         clienteRepository.save(cliente);
 
         Optional<Cliente> encontrado = clienteRepository.findByTelefone("999999999");
