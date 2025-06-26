@@ -26,8 +26,12 @@ class FreteRepositoryTest {
 
     @Test
     void deveBuscarFretesOrdenadosPorValor() {
-        Cliente cliente = clienteRepository.save(new Cliente(null, "João", "988887777"));
-        Cidade cidade = cidadeRepository.save(new Cidade(null, "São Luís", "MA", new BigDecimal("10.00")));
+        Cliente cliente = clienteRepository.save(
+                new Cliente(null, "João", "Rua das Flores, 456", "988887777")
+        );
+        Cidade cidade = cidadeRepository.save(
+                new Cidade(null, "São Luís", "MA", new BigDecimal("10.00"))
+        );
 
         freteRepository.save(new Frete(null, "F01", "Frete barato", new BigDecimal("5"), new BigDecimal("60.00"), cliente, cidade));
         freteRepository.save(new Frete(null, "F02", "Frete médio", new BigDecimal("5"), new BigDecimal("70.00"), cliente, cidade));

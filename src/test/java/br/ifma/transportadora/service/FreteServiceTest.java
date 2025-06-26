@@ -40,8 +40,12 @@ class FreteServiceTest {
         clienteRepository.deleteAll();
         cidadeRepository.deleteAll();
 
-        cliente = clienteRepository.save(new Cliente(null, "Joana", "989898888"));
-        cidade = cidadeRepository.save(new Cidade(null, "Caxias", "MA", new BigDecimal("15.00")));
+        cliente = clienteRepository.save(
+                new Cliente(null, "Joana", "Rua do Sol, 123", "989898888")
+        );
+        cidade = cidadeRepository.save(
+                new Cidade(null, "Caxias", "MA", new BigDecimal("15.00"))
+        );
     }
 
     @Test
@@ -95,7 +99,9 @@ class FreteServiceTest {
 
     @Test
     void deveRetornarCidadeComMaisFretes() {
-        Cidade outraCidade = cidadeRepository.save(new Cidade(null, "Imperatriz", "MA", new BigDecimal("20")));
+        Cidade outraCidade = cidadeRepository.save(
+                new Cidade(null, "Imperatriz", "MA", new BigDecimal("20"))
+        );
 
         freteRepository.save(new Frete(null, "A", "desc", new BigDecimal("1"), new BigDecimal("10"), cliente, cidade));
         freteRepository.save(new Frete(null, "B", "desc", new BigDecimal("1"), new BigDecimal("10"), cliente, cidade));

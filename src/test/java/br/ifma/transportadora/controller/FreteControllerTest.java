@@ -44,7 +44,7 @@ class FreteControllerTest {
         cidadeRepository.deleteAll();
         clienteRepository.deleteAll();
 
-        cliente = clienteRepository.save(new Cliente(null, "Carlos", "999888777"));
+        cliente = clienteRepository.save(new Cliente(null, "Carlos", "Rua do Sol, 123", "999888777"));
         cidade = cidadeRepository.save(new Cidade(null, "Timon", "MA", new BigDecimal("25.00")));
     }
 
@@ -87,7 +87,7 @@ class FreteControllerTest {
         frete.setPeso(new BigDecimal("5.0"));
 
         // Cliente e cidade inexistentes
-        frete.setCliente(new Cliente(999L, null, null));
+        frete.setCliente(new Cliente(999L, "Fake", "Sem endereço", "000000000"));
         frete.setCidade(cidade);
 
         mockMvc.perform(post("/fretes")
